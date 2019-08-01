@@ -1,0 +1,94 @@
+\magnification 1200
+\input /Users/jimwolper/TeX/standard.tex
+
+\font\bigger=cmr10 scaled\magstep1
+\font\smaller=cmr7
+\def\Tau{\rm T}
+\input epsf
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\centerline{Idaho State University}
+\centerline{Mathematics 1160 Applied Calculus}
+\centerline{Jim Wolper}
+\centerline{26 September 2012}
+\centerline{{\bf Working with Exponentials}}
+\centerline{\copyright James S.~Wolper 2012}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Sect{}
+
+I told my class that the metabolic half--life of nicotine is 2 hours, 
+so they know that if the initial amount is $Q_0$ then the amount
+$Q(t)$ of nicotine after $t$ hours is
+%
+$$
+Q_0 \left ( {1\over 2} \right )^{t/2}.
+$$
+
+But now there's a problem in the book saying that
+$Q(20) = 0.36$ while $Q'(20) = -0.002$, where the
+time is in minutes.
+
+Which one of us is lying?
+
+First, change the time unit to minutes; change the name of the function to  $f$
+while you're at it.  So,
+%
+$$
+f(t) = Q_0 \left ( {1\over 2} \right )^{t/120},
+$$
+and the book says $f(20) = 0.36$ and $f'(20) = -0.002$
+
+\subSect{Crunching the data}
+
+It's probably easier to think about $f'$ by rewriting $f(t)$
+as $Q_0e^{-t\ln(2)/120} \approx Q_0 e^{-0.005776t}$.
+Then
+%
+$$
+f'(t) = \left ( {{-t\ln 2}\over{120}}\right ) Q_0 e^{-t\ln(2)/120},
+$$
+which is just $(-t\ln(2)/120) f(t)$, as one would expect for a
+decay problem in which the rate is proportional to the amount 
+remaining.  In other words, the model predicts $k = -0.005776$.
+
+\bigskip
+
+Looking at $f$ and $f'$ side-by-side saves a bunch of work.  In general
+%
+$$
+\Biggl \{
+\matrix{
+0.36 & = & Q_0 e^{kt} \cr
+-0.002 & = & k Q_0 e^{kt} \cr
+}
+$$
+so the data says that $k$ is $-0.002/0.36 \approx -0.005556.$
+
+But the 120 minute half life predicted a $k \approx0.005776$; the data
+gives a $k$ less than $4\%$ different, which is pretty good.
+
+What is the half-life predicted by the data?  This involves solving
+$-\ln(2)/H = -0.5556$ for $H$; the solution is 125 minutes, which is little
+over 4\% more than I told them.
+
+%%%%%%%%%%%%%%%
+\subSect{Another Kind of Error}
+
+So is there any error at all?  I told the class that the half-life was 2 hours,
+freely confessing that my source was {\tt wikipedia.org}.  {\sl That's only one significant figure!\/}
+Put differently, converting the 125 minute half--life to hours yields
+a half-life of {\sl 2 hours\/}, exactly what I told them.
+
+
+Going back to the estimation of $k$ from the data but carrying fewer significant digits
+leads to a prediction of $0.0056$ and an estimate of $0.0056$, 
+which is exact agreement.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bye

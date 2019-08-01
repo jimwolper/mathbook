@@ -1,0 +1,193 @@
+\magnification 1200
+\input /Users/jimwolper/TeX/standard.tex
+
+\font\bigger=cmr10 scaled\magstep1
+\font\smaller=cmr7
+\def\Tau{\rm T}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\centerline{Idaho State University}
+\centerline{Mathematics 1160 Applied Calculus}
+\centerline{Jim Wolper}
+\centerline{6 September 2013}
+\centerline{{\bf THREE CUPS OF $E$}}
+\centerline{\copyright James S.~Wolper 2012, 2013}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The most important functions in applied mathematics are the
+exponential functions.  There are three reasons for this.  First,
+the exponential functions directly model phenomena in nature like
+radioactive decay, bacterial growth, compound interest, and others.
+Less obviously, descriptions of other phenomena like logistic
+growth, drug concentrations, and heating involve exponential
+functions in an essential way.  
+
+Second (although we won't study this this semester), the
+exponential functions serve as a computational model for many of the other
+functions that occur in applying mathematics.
+
+Third, exponential functions come up in a natural way when
+we do calculus.  Deeper investigation into functions
+often leads to surprising relationships.  Is it obvious that
+$\displaystyle {1\over{x^2 + 1}}$ is related to trigonometry?
+But it is.  Is it obvious that $\displaystyle 1\over x$ is 
+related to exponentials?  {\sl But it is!\/}
+
+While models are incredibly useful, modelling is not measurement
+In fact, neither is possible without the
+other.  But the exponential models are continuous, but we measure
+at intervals, not continuously.  Either way, the function involved is
+an exponential function, and we need to be 
+able to compare the continuously--measured
+model to the discretely--measured data, requiring the algebra of
+exponential functions, as well as logarithms.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Sect{The Three Forms}
+
+The exponential functions appear in three major forms.  These
+forms are equally useful, but in different circumstances.  They are
+
+\BULL {\bf RELATIVE GROWTH}.  When a quantity grows at a fixed
+rate each time period ({\it e.g.\/}, mobile phone handset sales are
+growing at 6\% per year), the exponential function implied
+has the form
+
+$$H(t) = H_0\cdot (1 + a)^{kt},$$
+where $a$ is the growth rate (which may be negative) and $k$
+is a constant.
+
+This form is typically found in measurement.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\BULL {\bf HALF-LIFE and DOUBLING}
+
+If the amount $Q$ has a half-life $h$, then 
+
+$$Q(t) = Q_0 \cdot \biggl ( {1\over 2} \biggr )^{t/h},$$
+while if the quantity $P$ has a doubling time of $H$
+
+$$P(t) = P_0 \cdot 2^{t/H}.$$
+
+This is a convenient form for working with decaying substances.
+For example, how long should a pilot wait after taking a drug that might interfere
+with flying before flying again?  The standard answer is 
+``three half-lifes."  (These are metabolic half-lifes, not
+physical half-lifes.)
+
+% source Bruce Chien, personal communication
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\BULL {\bf CALCULUS}
+
+The best exponential function for doing Calculus is
+
+$$f(x) = f_0\cdot e^{rx}.$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Sect{Manipulations}
+
+All three forms of the function are useful, and it is not unusual
+to need all three in one problem.  So, it is important to 
+move between the forms fluently.  There are two key facts that
+make this possible:
+
+$$\matrix{
+e^{A + B} & = & e^A e^B\cr
+e^{\ln x} & = & x\cr
+}$$
+
+Remember, the last equation does not say that $e$ and $\ln$ cancel;
+it says that the composition of these two functions has the
+desired result.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Sect{Example}
+
+Cardiolite (technetium Tc 99m MIBI) is
+a radionuclide used in cardiac imaging.  
+According to {\tt http://www.pharmgkb.org}, cardiolite's
+effective half-life in the liver is 28 minutes, that is,
+after 28 minutes, half of the cariolite in the liver has been
+eliminated.  (This measurement combines metabolic and
+radioactive decay).  We will describe the 
+decay of cardiolite all three ways.
+
+First, define $C(t)$ to be the amount of cardiolite in the 
+liver $t$ minutes after injection, and let $C_0$ be
+$C(0)$, as usual.  From here, it is easy to write down
+the {\bf half life} form of an expression for $C$, namely
+
+$$C(t) = C_0 \cdot \biggl ( {1\over 2} \biggr ) ^{t/28}.$$
+You can verify this by noting that $C(28) = C_0 \cdot (1/2)$,
+that is, half of the cardiolite is gone.
+
+For the {\bf calculus} form, write $1/2$ as $e^{\ln 1/2}$:
+
+$$\matrix{
+  C(t)  & = &  C_0 \cdot \bigl ( {1\over 2} \bigr ) ^{t/28}& ~\cr
+        & = & C_0 
+               \bigl (
+                 e^{\ln 1/2}
+               \bigr )
+               ^{t/28}\cr
+        & = & C_0 e^{{{t}\over{28}}\ln 1/2}\cr
+}    % matrix
+$$
+
+The constant $\displaystyle {{\ln 1/2}\over{28}}$ is approximately 
+$-0.0248$, so
+
+$$C(t) \approx C_0 e^{-0.025t}.$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Sect{Measurement and Modelling}
+
+Researchers draw blood at
+intervals and measure the amount of a substance undergoing
+decay like cardiolite.
+Also, while many population models are in the form $P_0e^{kt}$, more
+typically you measure the population in intervals (every minute, every year, $\ldots$).
+So you need to go from relative growth rate (what you {\sl
+measure\/}) to continuous growth rate (what you {\sl model\/})
+and {\it vice--versa\/}.
+For typical growth rates, these are very close, but not exactly the same.
+
+
+For the minute-by-minute decay of cardiolite, write
+$C(t) = C_0\cdot(1 + a)^t$ and solve
+
+$$\matrix{
+ (1 + a)^t    & = & e^{-0.025t}& {\rm\ take~logs}\cr
+ t\ln (1 + a) & = & -0.025t\cr
+ \ln(1 + a)   & = & -0.025\cr
+ 1 + a        & = & e^{-0.025}\cr
+ a            & = & e^{-0.025} - 1 \cr
+              & \approx & -0.0247\cr
+}   % matrix
+$$
+The minute-by-minute decline of cardiolite in the liver is 
+around $2.47\%$.
+
+Notice that the minute-by-minute decay rate is $-0.0247$
+while the continuous decay rate is $-0.0248$, which
+is very close, but different.  In general, if $x$ is small,
+$\ln(1+x) \approx x$, so that is the expected behavior
+
+Finally, how do we get from measurement to half-life?
+Given the minute-by-minute decay rate of $-0.0247$,
+%
+$$\matrix{
+(1 - 0.0247)^t & = & \left ( {1\over 2}\right)^{t/h}&{\rm\ [where\ }h{\rm\ is\ unknown]}\cr
+t\ln(0.9753) & = & {t\over h} \ln(1/2)\cr
+h & = & {{ln(1/2)}\over{\ln(0.9753)}} & ]t{\rm\ cancelled}]\cr
+   & \approx & 28,
+}$$
+which is where we began.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bye
